@@ -134,7 +134,7 @@ export function FollowUpBoard({ agent, leads, scope }: { agent?: Agent; leads: L
       {shown.length === 0 && <div className="rounded-xl border bg-card p-10 text-center text-sm text-muted-foreground">No enquiries here.</div>}
       {shown.map((e) => <EnquiryCard key={e.id} e={e} update={update} onEdit={() => setEditing(e)} />)}
 
-      {editing && <FollowUpForm initial={editing} agent={agent as Agent | undefined} onClose={() => setEditing(null)} onSave={save} />}
+      {editing && <FollowUpForm initial={editing} agent={agent} onClose={() => setEditing(null)} onSave={save} />}
     </div>
   );
 }
@@ -233,7 +233,7 @@ function Chip({ icon: Icon, children, onClick }: { icon: typeof Star; children: 
 
 /* ---------- Student Follow Up Form (from the Skill AI form) ---------- */
 
-function FollowUpForm({ initial, agent, onClose, onSave }: { initial: Enquiry; agent?: Agent; onClose: () => void; onSave: (e: Enquiry) => void }) {
+function FollowUpForm({ initial, agent, onClose, onSave }: { initial: Enquiry; agent: Agent | undefined; onClose: () => void; onSave: (e: Enquiry) => void }) {
   const [f, setF] = useState<Enquiry>(initial);
   const [fu, setFu] = useState<FollowUpEntry>({ date: new Date().toISOString().slice(0, 10), status: "Follow Up", note: "" });
   const set = <K extends keyof Enquiry>(k: K, v: Enquiry[K]) => setF((x) => ({ ...x, [k]: v }));

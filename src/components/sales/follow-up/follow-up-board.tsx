@@ -79,8 +79,8 @@ const FILTERS = [
   { k: "Hot Enquiries", icon: Flame },
 ] as const;
 
-export function FollowUpBoard({ agent, leads }: { agent: Agent; leads: Lead[] }) {
-  const [items, setItems] = useCloudState<Enquiry[]>(`followups.${agent.id}`, leads.map(fromLead));
+export function FollowUpBoard({ agent, leads, scope }: { agent?: Agent; leads: Lead[]; scope?: string }) {
+  const [items, setItems] = useCloudState<Enquiry[]>(`followups.${scope ?? agent?.id ?? "all"}`, leads.map(fromLead));
   const [filter, setFilter] = useState<string>("All");
   const [outcomeFilter, setOutcomeFilter] = useState("");
   const [editing, setEditing] = useState<Enquiry | null>(null);
@@ -233,7 +233,7 @@ function Chip({ icon: Icon, children, onClick }: { icon: typeof Star; children: 
 
 /* ---------- Student Follow Up Form (from the Skill AI form) ---------- */
 
-function FollowUpForm({ initial, agent, onClose, onSave }: { initial: Enquiry; agent: Agent; onClose: () => void; onSave: (e: Enquiry) => void }) {
+function FollowUpForm({ initial, agent, onClose, onSave }: { initial: Enquiry; agent?: Agent; onClose: () => void; onSave: (e: Enquiry) => void }) {
   const [f, setF] = useState<Enquiry>(initial);
   const [fu, setFu] = useState<FollowUpEntry>({ date: new Date().toISOString().slice(0, 10), status: "Follow Up", note: "" });
   const set = <K extends keyof Enquiry>(k: K, v: Enquiry[K]) => setF((x) => ({ ...x, [k]: v }));
@@ -329,7 +329,7 @@ function FollowUpForm({ initial, agent, onClose, onSave }: { initial: Enquiry; a
             </Button>
           </Block>
 
-          <p className="text-xs text-muted-foreground">Checked by sales executive: <b>{agent.name}</b></p>
+          <p className="text-xs text-muted-foreground">Checked by sales executive: <b>{agent?.name ?? "—"}</b></p>
         </div>
 
         <div className="flex justify-end gap-2 border-t px-6 py-4">

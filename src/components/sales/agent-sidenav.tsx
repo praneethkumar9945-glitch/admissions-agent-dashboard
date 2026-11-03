@@ -60,6 +60,25 @@ export function AgentSideNav() {
       )}
 
       <nav className="flex-1 overflow-y-auto scrollbar-thin px-2 py-3 space-y-0.5">
+        <Link
+          to="/admission/follow-up"
+          className={cn(
+            "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
+            pathname === "/admission/follow-up"
+              ? "bg-sidebar-accent text-sidebar-accent-foreground"
+              : "text-sidebar-foreground hover:bg-sidebar-accent/60",
+          )}
+        >
+          <div className="rounded-full grid place-items-center font-semibold text-[11px] shrink-0 size-8 bg-primary/15 text-primary">
+            <Clock className="size-4" />
+          </div>
+          {!collapsed && (
+            <div className="min-w-0 flex-1">
+              <div className="text-sm font-semibold leading-tight">Follow Up</div>
+              <div className="text-[11px] text-muted-foreground truncate">All enquiries</div>
+            </div>
+          )}
+        </Link>
         {filtered.map((a) => {
           const active = pathname === `/admission/agents/${a.id}`;
           const initials = a.name

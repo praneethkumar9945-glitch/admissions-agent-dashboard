@@ -26,6 +26,7 @@ const TABS: {
   to:
     | "/admission"
     | "/admission/agents"
+    | "/admission/follow-up"
     | "/admission/leads"
     | "/admission/applications"
     | "/admission/finance"
@@ -37,6 +38,7 @@ const TABS: {
 }[] = [
   { to: "/admission", label: "Dashboard", exact: true },
   { to: "/admission/agents", label: "Agents" },
+  { to: "/admission/follow-up", label: "Follow Up" },
   { to: "/admission/leads", label: "Lead Pool" },
   { to: "/admission/call-center", label: "Call Center" },
   { to: "/admission/applications", label: "Skill AI Admissions" },

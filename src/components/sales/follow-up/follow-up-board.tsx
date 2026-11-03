@@ -134,7 +134,7 @@ export function FollowUpBoard({ agent, leads, scope }: { agent?: Agent; leads: L
       {shown.length === 0 && <div className="rounded-xl border bg-card p-10 text-center text-sm text-muted-foreground">No enquiries here.</div>}
       {shown.map((e) => <EnquiryCard key={e.id} e={e} update={update} onEdit={() => setEditing(e)} />)}
 
-      {editing && <FollowUpForm initial={editing} agent={agent} onClose={() => setEditing(null)} onSave={save} />}
+      {editing && <FollowUpForm initial={editing} agent={agent as Agent | undefined} onClose={() => setEditing(null)} onSave={save} />}
     </div>
   );
 }

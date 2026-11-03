@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Search, Star, Users, ChevronLeft, ChevronRight } from "lucide-react";
+import { Search, Star, Users, ChevronLeft, ChevronRight, Clock } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useSales } from "@/lib/sales-store";
 import { cn } from "@/lib/utils";

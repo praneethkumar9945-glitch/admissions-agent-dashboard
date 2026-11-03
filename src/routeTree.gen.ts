@@ -26,6 +26,7 @@ import { Route as AdmissionApplicationsRouteImport } from './routes/admission.ap
 import { Route as AdmissionCallCenterRouteImport } from './routes/admission.call-center'
 import { Route as AdmissionFeeConcessionRouteImport } from './routes/admission.fee-concession'
 import { Route as AdmissionFinanceRouteImport } from './routes/admission.finance'
+import { Route as AdmissionFollowUpRouteImport } from './routes/admission.follow-up'
 import { Route as AdmissionFormBuilderRouteImport } from './routes/admission.form-builder'
 import { Route as AdmissionLeadsRouteImport } from './routes/admission.leads'
 import { Route as AdmissionAgentsIndexRouteImport } from './routes/admission.agents.index'
@@ -123,6 +124,11 @@ const AdmissionFinanceRoute = AdmissionFinanceRouteImport.update({
   path: '/finance',
   getParentRoute: () => AdmissionRoute,
 } as any)
+const AdmissionFollowUpRoute = AdmissionFollowUpRouteImport.update({
+  id: '/follow-up',
+  path: '/follow-up',
+  getParentRoute: () => AdmissionRoute,
+} as any)
 const AdmissionFormBuilderRoute = AdmissionFormBuilderRouteImport.update({
   id: '/form-builder',
   path: '/form-builder',
@@ -202,6 +208,7 @@ export interface FileRoutesByFullPath {
   '/admission/call-center': typeof AdmissionCallCenterRouteWithChildren
   '/admission/fee-concession': typeof AdmissionFeeConcessionRoute
   '/admission/finance': typeof AdmissionFinanceRoute
+  '/admission/follow-up': typeof AdmissionFollowUpRoute
   '/admission/form-builder': typeof AdmissionFormBuilderRoute
   '/admission/leads': typeof AdmissionLeadsRoute
   '/admission/': typeof AdmissionIndexRoute
@@ -229,6 +236,7 @@ export interface FileRoutesByTo {
   '/admission/applications': typeof AdmissionApplicationsRouteWithChildren
   '/admission/fee-concession': typeof AdmissionFeeConcessionRoute
   '/admission/finance': typeof AdmissionFinanceRoute
+  '/admission/follow-up': typeof AdmissionFollowUpRoute
   '/admission/form-builder': typeof AdmissionFormBuilderRoute
   '/admission/leads': typeof AdmissionLeadsRoute
   '/admission': typeof AdmissionIndexRoute
@@ -260,6 +268,7 @@ export interface FileRoutesById {
   '/admission/call-center': typeof AdmissionCallCenterRouteWithChildren
   '/admission/fee-concession': typeof AdmissionFeeConcessionRoute
   '/admission/finance': typeof AdmissionFinanceRoute
+  '/admission/follow-up': typeof AdmissionFollowUpRoute
   '/admission/form-builder': typeof AdmissionFormBuilderRoute
   '/admission/leads': typeof AdmissionLeadsRoute
   '/admission/': typeof AdmissionIndexRoute
@@ -292,6 +301,7 @@ export interface FileRouteTypes {
     | '/admission/call-center'
     | '/admission/fee-concession'
     | '/admission/finance'
+    | '/admission/follow-up'
     | '/admission/form-builder'
     | '/admission/leads'
     | '/admission/'
@@ -319,6 +329,7 @@ export interface FileRouteTypes {
     | '/admission/applications'
     | '/admission/fee-concession'
     | '/admission/finance'
+    | '/admission/follow-up'
     | '/admission/form-builder'
     | '/admission/leads'
     | '/admission'
@@ -349,6 +360,7 @@ export interface FileRouteTypes {
     | '/admission/call-center'
     | '/admission/fee-concession'
     | '/admission/finance'
+    | '/admission/follow-up'
     | '/admission/form-builder'
     | '/admission/leads'
     | '/admission/'
@@ -497,6 +509,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdmissionFinanceRouteImport
       parentRoute: typeof AdmissionRoute
     }
+    '/admission/follow-up': {
+      id: '/admission/follow-up'
+      path: '/follow-up'
+      fullPath: '/admission/follow-up'
+      preLoaderRoute: typeof AdmissionFollowUpRouteImport
+      parentRoute: typeof AdmissionRoute
+    }
     '/admission/form-builder': {
       id: '/admission/form-builder'
       path: '/form-builder'
@@ -632,6 +651,7 @@ interface AdmissionRouteChildren {
   AdmissionCallCenterRoute: typeof AdmissionCallCenterRouteWithChildren
   AdmissionFeeConcessionRoute: typeof AdmissionFeeConcessionRoute
   AdmissionFinanceRoute: typeof AdmissionFinanceRoute
+  AdmissionFollowUpRoute: typeof AdmissionFollowUpRoute
   AdmissionFormBuilderRoute: typeof AdmissionFormBuilderRoute
   AdmissionLeadsRoute: typeof AdmissionLeadsRoute
   AdmissionIndexRoute: typeof AdmissionIndexRoute
@@ -644,6 +664,7 @@ const AdmissionRouteChildren: AdmissionRouteChildren = {
   AdmissionCallCenterRoute: AdmissionCallCenterRouteWithChildren,
   AdmissionFeeConcessionRoute: AdmissionFeeConcessionRoute,
   AdmissionFinanceRoute: AdmissionFinanceRoute,
+  AdmissionFollowUpRoute: AdmissionFollowUpRoute,
   AdmissionFormBuilderRoute: AdmissionFormBuilderRoute,
   AdmissionLeadsRoute: AdmissionLeadsRoute,
   AdmissionIndexRoute: AdmissionIndexRoute,

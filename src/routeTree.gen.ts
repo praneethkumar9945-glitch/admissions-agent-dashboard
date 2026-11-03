@@ -29,6 +29,7 @@ import { Route as AdmissionFinanceRouteImport } from './routes/admission.finance
 import { Route as AdmissionFollowUpRouteImport } from './routes/admission.follow-up'
 import { Route as AdmissionFormBuilderRouteImport } from './routes/admission.form-builder'
 import { Route as AdmissionLeadsRouteImport } from './routes/admission.leads'
+import { Route as AgentIdRouteImport } from './routes/agent.$id'
 import { Route as AdmissionAgentsIndexRouteImport } from './routes/admission.agents.index'
 import { Route as AdmissionAgentsIdRouteImport } from './routes/admission.agents.$id'
 import { Route as AdmissionApplicationsIdRouteImport } from './routes/admission.applications.$id'
@@ -139,6 +140,11 @@ const AdmissionLeadsRoute = AdmissionLeadsRouteImport.update({
   path: '/leads',
   getParentRoute: () => AdmissionRoute,
 } as any)
+const AgentIdRoute = AgentIdRouteImport.update({
+  id: '/agent/$id',
+  path: '/agent/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdmissionAgentsIndexRoute = AdmissionAgentsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -211,6 +217,7 @@ export interface FileRoutesByFullPath {
   '/admission/follow-up': typeof AdmissionFollowUpRoute
   '/admission/form-builder': typeof AdmissionFormBuilderRoute
   '/admission/leads': typeof AdmissionLeadsRoute
+  '/agent/$id': typeof AgentIdRoute
   '/admission/': typeof AdmissionIndexRoute
   '/admission/agents/$id': typeof AdmissionAgentsIdRoute
   '/admission/applications/$id': typeof AdmissionApplicationsIdRoute
@@ -239,6 +246,7 @@ export interface FileRoutesByTo {
   '/admission/follow-up': typeof AdmissionFollowUpRoute
   '/admission/form-builder': typeof AdmissionFormBuilderRoute
   '/admission/leads': typeof AdmissionLeadsRoute
+  '/agent/$id': typeof AgentIdRoute
   '/admission': typeof AdmissionIndexRoute
   '/admission/agents/$id': typeof AdmissionAgentsIdRoute
   '/admission/applications/$id': typeof AdmissionApplicationsIdRoute
@@ -271,6 +279,7 @@ export interface FileRoutesById {
   '/admission/follow-up': typeof AdmissionFollowUpRoute
   '/admission/form-builder': typeof AdmissionFormBuilderRoute
   '/admission/leads': typeof AdmissionLeadsRoute
+  '/agent/$id': typeof AgentIdRoute
   '/admission/': typeof AdmissionIndexRoute
   '/admission/agents/$id': typeof AdmissionAgentsIdRoute
   '/admission/applications/$id': typeof AdmissionApplicationsIdRoute
@@ -304,6 +313,7 @@ export interface FileRouteTypes {
     | '/admission/follow-up'
     | '/admission/form-builder'
     | '/admission/leads'
+    | '/agent/$id'
     | '/admission/'
     | '/admission/agents/$id'
     | '/admission/applications/$id'
@@ -332,6 +342,7 @@ export interface FileRouteTypes {
     | '/admission/follow-up'
     | '/admission/form-builder'
     | '/admission/leads'
+    | '/agent/$id'
     | '/admission'
     | '/admission/agents/$id'
     | '/admission/applications/$id'
@@ -363,6 +374,7 @@ export interface FileRouteTypes {
     | '/admission/follow-up'
     | '/admission/form-builder'
     | '/admission/leads'
+    | '/agent/$id'
     | '/admission/'
     | '/admission/agents/$id'
     | '/admission/applications/$id'
@@ -386,6 +398,7 @@ export interface RootRouteChildren {
   MarketingRoute: typeof MarketingRoute
   SettingsRoute: typeof SettingsRoute
   WorkspaceRoute: typeof WorkspaceRoute
+  AgentIdRoute: typeof AgentIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -529,6 +542,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/admission/leads'
       preLoaderRoute: typeof AdmissionLeadsRouteImport
       parentRoute: typeof AdmissionRoute
+    }
+    '/agent/$id': {
+      id: '/agent/$id'
+      path: '/agent/$id'
+      fullPath: '/agent/$id'
+      preLoaderRoute: typeof AgentIdRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/admission/agents/': {
       id: '/admission/agents/'
@@ -685,6 +705,7 @@ const rootRouteChildren: RootRouteChildren = {
   MarketingRoute: MarketingRoute,
   SettingsRoute: SettingsRoute,
   WorkspaceRoute: WorkspaceRoute,
+  AgentIdRoute: AgentIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

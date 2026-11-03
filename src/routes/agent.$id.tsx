@@ -3,7 +3,7 @@ import { useState } from "react";
 import {
   Area, AreaChart, Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis,
 } from "recharts";
-import { Mail, Phone, Star, ClipboardList, LayoutDashboard } from "lucide-react";
+import { Mail, Phone, Star, ClipboardList, LayoutDashboard, Users, Trophy, TrendingUp } from "lucide-react";
 import { Section, StatCard } from "@/components/ui/page";
 import { useSales, agentStats } from "@/lib/sales-store";
 import { FollowUpBoard } from "@/components/sales/follow-up/follow-up-board";
@@ -93,10 +93,10 @@ function AgentPortal() {
         ) : (
           <>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              <StatCard label="Leads assigned" value={String(s.leads)} />
-              <StatCard label="Calls made" value={String(s.calls)} />
-              <StatCard label="Won" value={String(s.won)} />
-              <StatCard label="Revenue" value={`₹${s.revenue.toLocaleString("en-IN")}`} />
+              <StatCard label="Leads assigned" value={String(s.leads)} icon={Users} />
+              <StatCard label="Calls made" value={String(s.calls)} icon={Phone} />
+              <StatCard label="Won" value={String(s.won)} icon={Trophy} />
+              <StatCard label="Revenue" value={`₹${s.revenue.toLocaleString("en-IN")}`} icon={TrendingUp} />
             </div>
             <div className="grid gap-4 lg:grid-cols-2">
               <Section title="Weekly activity">
